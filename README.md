@@ -1,7 +1,9 @@
-# Mexico
+# Adaptación Mexico
 
-Plugin de adaptación de FacturaScripts para México. 
+Plugin de adaptación de FacturaScripts para México. <br/>
 
-https://www.facturascripts.com
+Autor: fflores@balamti.com.mx <br/>
+
+Para: https://www.facturascripts.com <br/>
 
 http://balamti.com.mx

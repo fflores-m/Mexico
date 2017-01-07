@@ -31,7 +31,7 @@ require_model('impuesto.php');
  *
  * @author carlos
  */
-class admin_argentina extends fs_controller
+class admin_mexico extends fs_controller
 {
    public $impuestos_ok;
    
@@ -43,6 +43,7 @@ class admin_argentina extends fs_controller
    protected function private_core()
    {
       $this->check_impuestos();
+       $this->traducciones();
       
       if( isset($_GET['opcion']) )
       {
@@ -56,7 +57,7 @@ class admin_argentina extends fs_controller
          }
          else if($_GET['opcion'] == 'pais')
          {
-            $this->empresa->codpais = 'MX';
+            $this->empresa->codpais = 'MEX';
             if( $this->empresa->save() )
             {
                $this->new_message('Datos guardados correctamente.');
@@ -98,7 +99,7 @@ class admin_argentina extends fs_controller
          $impuesto->delete();
       }
       
-      /// añadimos los de Argentina
+      /// añadimos los de Mexico
       $codimp = array("IVA","ISR","IEPS");
       $desc = array("16%","30%","35%");
       $recargo = 0;
@@ -129,6 +130,31 @@ class admin_argentina extends fs_controller
       }
    }
    
+    public function traducciones()
+   {
+      $clist = array();
+      
+      $include = array(          
+          'albaran','albaranes', 'cifnif','irpf'
+      );
+      
+      $tradMX = array(
+          'recibo', 'recibos', 'R.F.C.', 'I.S.R.' 
+      );
+      
+      $x=0;
+      
+      foreach($GLOBALS['config2'] as $i => $value)
+      {
+         if( in_array($i, $include) ){
+            $clist[] = array('tradMX' => $tradMX[$x], 'nombre' => $i, 'valor' => $value);
+            $x++;
+         }
+      }
+      
+      return (array) $clist;
+   }
+    
    private function share_extensions()
    {
       
